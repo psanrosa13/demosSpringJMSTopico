@@ -11,11 +11,12 @@ public class MensagemTopico {
 	@Autowired
 	private JmsTemplate jmsTemplate;
 	
+	
 	public void enviaMensagemTopico(String mensagem) {
-		jmsTemplate.convertAndSend("topico.teste", mensagem);
+		jmsTemplate.convertAndSend("topico.mensagem", mensagem);
 	}
 	
-	@JmsListener(destination = "topico.teste", containerFactory = "jmsFactoryTopic")
+	@JmsListener(destination = "topico.mensagem", containerFactory = "jmsFactoryTopic")
 	public void consumirMensagemTopico(String mensagem) {
 		System.out.println( mensagem );
 	}
